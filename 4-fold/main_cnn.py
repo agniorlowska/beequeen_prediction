@@ -27,11 +27,6 @@ mt.run(mode, n_chunks, fold1_directory, fold2_directory,
       num_batch_size, num_epochs)
 
 
-# dupa = [0, 1, 3]
-
-# for i in range(len(dupa)):
-#     mt.run(dupa[i], n_chunks, fold1_directory, fold2_directory, 
-#        fold3_directory, fold4_directory, num_batch_size, num_epochs)
 
 
 
