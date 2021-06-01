@@ -204,7 +204,7 @@ def plot_confusion_matrix(cm, classes,
 #------------main function-------------------------------------#
 
 def run(mode, n_chunks, fold1_directory, fold2_directory, 
-           fold3_directory, fold4_directory, foldaug_directory,
+           fold3_directory, fold4_directory, 
            num_batch_size, num_epochs):
     #global variables:
     class_names= ['no queen', 'queen' ]
