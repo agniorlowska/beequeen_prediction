@@ -38,9 +38,8 @@ def queen_info(filepath):
   elif info[4] == 'queenbee':
     queen = 1
   return queen
-#------------------------------------------#
 
-#firstly tested - mean
+#-------g() function using mean------------#
 def mean(s, n_chunks):
     m, f = s.shape
     mod = m % n_chunks
@@ -54,7 +53,6 @@ def mean(s, n_chunks):
     stft_mean = np.asarray(stft_mean)
     return stft_mean
 
-
 #--------feature extraction tools----------#
 #stft 
 def stft_extraction(filepath, n_chunks):
@@ -66,7 +64,7 @@ def stft_extraction(filepath, n_chunks):
   summ_s = mean(s, n_chunks)
   return summ_s
 
-#complex stft - using scipy.stft 
+#complex stft
 def complex_stft(filepath, n_chunks):
     x, fs = librosa.load(filepath)
     zs = np.abs(librosa.stft(x, n_fft=1024, hop_length=512, win_length=1024, window='hann', 
@@ -79,7 +77,6 @@ def complex_stft(filepath, n_chunks):
     summ_real = mean(real, n_chunks)
     summ_imag = mean(imag, n_chunks)
     summ_complex = summ_real**2 + summ_imag**2
-    #print(summ_complex.shape)
     return summ_complex 
      
 #cqt
@@ -109,45 +106,6 @@ def feature_extraction(filepath, n_chunks, mode): #here you can choose the appro
       s = mfccs_extraction(filepath)
   return s
 
-#--------summarization tools - g() function--------------#
-#########*********************#################
-def freq_mean(s, n_chunks):
-  chunks = n_chunks
-  stft_mean = []
-  split = np.split(s, chunks, axis = 0)
-  for i in range(0, chunks):
-      stft_mean.append(split[i].mean(axis=0))
-  stft_mean = np.asarray(stft_mean)
-  return stft_mean
-
-def freq_median(s, n_chunks):
-  chunks = n_chunks
-  stft_median = []
-  split = np.split(s, chunks, axis = 0)
-  for i in range(0, chunks):
-      stft_median.append(np.median(split[i], axis=0))
-  stft_median = np.asarray(stft_median)
-  return stft_median
-
-def freq_max(s, n_chunks):
-  chunks = n_chunks
-  stft_max = []
-  split = np.split(s, chunks, axis = 0)
-  for i in range(0, chunks):
-      stft_max.append(np.amax(split[i], axis=0))
-  stft_max = np.asarray(stft_max)
-  return stft_max
-
-def freq_iqr(s, n_chunks):
-  chunks = n_chunks
-  stft_mean = []
-  split = np.split(s, chunks, axis = 0)
-  for i in range(0, chunks):
-      iq = iqr(split[i], axis=0)
-      stft_mean.append(iq)
-  stft_mean = np.asarray(stft_mean)
-  return stft_mean
-#-----------------------------------------#  
 #-------data augmentation-----------------#
 def data_augmentation(filepath, n_chunks):
         x, sr = librosa.load(filepath)
@@ -201,7 +159,7 @@ def plot_confusion_matrix(cm, classes,
     plt.xlabel('Predicted label')
 #-------------------------------------------------------#
 
-#------------main function-------------------------------------#
+#-----------CNN classification-------------------------------------#
 
 def run(mode, n_chunks, fold1_directory, fold2_directory, 
            fold3_directory, fold4_directory, 
