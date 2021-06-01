@@ -15,7 +15,6 @@ fold1_directory = "/home/agnieszka/dataset_beehive/foldscnn/fold1"
 fold2_directory = "/home/agnieszka/dataset_beehive/foldscnn/fold2"
 fold3_directory = "/home/agnieszka/dataset_beehive/foldscnn/fold3"
 fold4_directory = "/home/agnieszka/dataset_beehive/foldscnn/fold4"
-foldaug_directory = "/home/agnieszka/dataset_beehive/foldscnn1/fold_aug"
 #some cnn performance properties
 num_epochs = 50
 num_batch_size = 145
@@ -23,7 +22,7 @@ num_batch_size = 145
 #####################################################################################
 
 mt.run(mode, n_chunks, fold1_directory, fold2_directory, 
-      fold3_directory, fold4_directory, foldaug_directory,
+      fold3_directory, fold4_directory,
       num_batch_size, num_epochs)
 
 
